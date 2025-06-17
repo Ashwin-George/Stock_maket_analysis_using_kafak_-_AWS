@@ -1,0 +1,26 @@
+
+--START ZOOKEEPER SERVICE
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+--START KAFKA SERVER
+bin/kafka-server-start.sh config/server.properties
+
+--ADDING MEMORY TO RUN KAFKA
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+
+--CREATING TOPIC
+bin/kafka-topics.sh --create --topic demo_test --bootstrap-server <EC2_PUBILC_IP:HOST_PORT> --replication-factor 1 --partitions 1
+
+--CREATING CONSUMER
+bin/kafka-console-producer.sh --topic demo_test --bootstrap-server <EC2_PUBILC_IP:HOST_PORT>
+
+--CREATING PRODUCER
+bin/kafka-console-consumer.sh --topic demo_test --bootstrap-server <EC2_PUBILC_IP:HOST_PORT>
+
+--LIST TOPICS IN THE SERVER
+bin/kafka-topics.sh --list --bootstrap-server <EC2_PUBILC_IP:HOST_PORT>
+
+#FOR EXAMPLE
+#<EC2_PUBILC_IP:HOST_PORT> : 13.203.76.125:9092
+
+
