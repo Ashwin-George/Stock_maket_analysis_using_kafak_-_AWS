@@ -1,3 +1,4 @@
+.gitignore
 .venv
 constants.py
-.qodana.yaml
+qodana.yaml
